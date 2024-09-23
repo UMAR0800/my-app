@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Clone the code from the GitHub repository
-                git 'https://github.com/UMAR0800/simple-python-app.git'
+                git 'https://github.com/UMAR0800/simple-python.git'
             }
         }
 
