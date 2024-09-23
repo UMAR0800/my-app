@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     // Run the container and capture the output
-                    sh 'docker run python-app'
+                    sh 'docker run --name python-app-container python-app'
                 }
             }
         }
@@ -30,8 +30,12 @@ pipeline {
         stage('Clean Up') {
             steps {
                 script {
-                    // Optionally clean up Docker containers and images
-                    sh 'docker rmi python-app'
+                    // Stop and remove the container
+                    sh 'docker stop python-app-container || true'
+                    sh 'docker rm python-app-container || true'
+                    
+                    // Remove the image
+                    sh 'docker rmi -f python-app'
                 }
             }
         }
